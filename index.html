@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Ingredients</title>
-  <style>
-    /* Add some basic styling to make it look better */
-    body {
-      font-family: Arial, sans-serif;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Ingredients</title>
+<style>
+     body {
+        font-family: Arial, sans-serif;
     }
+
     .container {
-      display: flex;
-      justify-content: space-between;
+        display: flex;
+        justify-content: space-between;
     }
+
     .recipe-list, .ingredient-list {
-      padding: 20px;
-      border: 1px solid #ccc;
-      width: 45%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        width: 45%;
     }
-  </style>
+</style>
 </head>
 <body>
-  <div class="container">
+    <div class="container">
     <div class="recipe-list">
-      <h2>Recipes:</h2>
-      <ul id="recipes"></ul>
+        <h2>Recipes:</h2>
+        <ul id="recipes"></ul>
     </div>
     <div class="ingredient-list">
-      <h2>Ingredients:</h2>
-      <ul id="ingredients"></ul>
+        <h2>Ingredients:</h2>
+        <ul id="ingredients"></ul>
     </div>
-  </div>
+    </div>
 
-    <script>
+<script>
     // Assuming your CSV data is converted to a JavaScript object like this:
 const data = [
   {
@@ -432,6 +433,6 @@ data.forEach(recipe => {
 
 // Initialize the ingredients list
 updateIngredientsList(ingredientsCount);
-    </script>
+</script>
 </body>
 </html>
