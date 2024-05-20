@@ -1,9 +1,437 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Ingredients</title>
+  <style>
+    /* Add some basic styling to make it look better */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .recipe-list, .ingredient-list {
+      padding: 20px;
+      border: 1px solid #ccc;
+      width: 45%;
+    }
+  </style>
 </head>
 <body>
-    
+  <div class="container">
+    <div class="recipe-list">
+      <h2>Recipes:</h2>
+      <ul id="recipes"></ul>
+    </div>
+    <div class="ingredient-list">
+      <h2>Ingredients:</h2>
+      <ul id="ingredients"></ul>
+    </div>
+  </div>
+
+    <script>
+    // Assuming your CSV data is converted to a JavaScript object like this:
+const data = [
+  {
+    "Recipe": "Fried Egg",
+    "Ingredients": "[Egg]"
+  },
+  {
+    "Recipe": "Omelet",
+    "Ingredients": "[Egg, Milk]"
+  },
+  {
+    "Recipe": "Salad",
+    "Ingredients": "[Leek, Dandelion, Vinegar]"
+  },
+  {
+    "Recipe": "Cheese Cauliflower",
+    "Ingredients": "[Cauliflower, Cheese]"
+  },
+  {
+    "Recipe": "Baked Fish",
+    "Ingredients": "[Sunfish, Bream, Wheat Flour]"
+  },
+  {
+    "Recipe": "Parsnip Soup",
+    "Ingredients": "[Parsnip, Milk, Vinegar]"
+  },
+  {
+    "Recipe": "Vegetable Medley",
+    "Ingredients": "[Tomato, Beet]"
+  },
+  {
+    "Recipe": "Complete Breakfast",
+    "Ingredients": "[Fried Egg, Milk, Hashbrowns, Pancakes]"
+  },
+  {
+    "Recipe": "Fried Calamari",
+    "Ingredients": "[Squid, Wheat Flour, Oil]"
+  },
+  {
+    "Recipe": "Strange Bun",
+    "Ingredients": "[Wheat Flour, Periwinkle, Void Mayo]"
+  },
+  {
+    "Recipe": "Lucky Lunch",
+    "Ingredients": "[Sea Cucumber, Corn, Blue Jazz]"
+  },
+  {
+    "Recipe": "Fried Mushroom",
+    "Ingredients": "[Common Mushroom, Morel, Oil]"
+  },
+  {
+    "Recipe": "Pizza",
+    "Ingredients": "[Wheat Flour, Tomato, Cheese]"
+  },
+  {
+    "Recipe": "Bean Hotpot",
+    "Ingredients": "[Green Bean, Green Bean]"
+  },
+  {
+    "Recipe": "Glazed Yams",
+    "Ingredients": "[Yam, Sugar]"
+  },
+  {
+    "Recipe": "Carp Surprise",
+    "Ingredients": "[Carp, Carp, Carp, Carp]"
+  },
+  {
+    "Recipe": "Hashbrowns",
+    "Ingredients": "[Potato, Oil]"
+  },
+  {
+    "Recipe": "Pancakes",
+    "Ingredients": "[Wheat Flour, Egg]"
+  },
+  {
+    "Recipe": "Salmon Dinner",
+    "Ingredients": "[Salmon, Amaranth, Kale]"
+  },
+  {
+    "Recipe": "Fish Taco",
+    "Ingredients": "[Tuna, Tortilla, Red Cabbage, Mayo]"
+  },
+  {
+    "Recipe": "Crispy Bass",
+    "Ingredients": "[Largemouth Bass, Wheat Flour, Oil]"
+  },
+  {
+    "Recipe": "Pepper Poppers",
+    "Ingredients": "[Hot Pepper, Cheese]"
+  },
+  {
+    "Recipe": "Bread",
+    "Ingredients": "[Wheat Flour]"
+  },
+  {
+    "Recipe": "Tom Kha Soup",
+    "Ingredients": "[Coconut, Shrimp, Common Mushroom]"
+  },
+  {
+    "Recipe": "Trout Soup",
+    "Ingredients": "[Rainbow Trout, Green Algae]"
+  },
+  {
+    "Recipe": "Chocolate Cake",
+    "Ingredients": "[Wheat Flour, Sugar, Egg]"
+  },
+  {
+    "Recipe": "Pink Cake",
+    "Ingredients": "[Melon, Wheat Flour, Sugar, Egg]"
+  },
+  {
+    "Recipe": "Rhubarb Pie",
+    "Ingredients": "[Rhubarb, Wheat Flour, Sugar]"
+  },
+  {
+    "Recipe": "Cookie",
+    "Ingredients": "[Wheat Flour, Sugar, Egg]"
+  },
+  {
+    "Recipe": "Spaghetti",
+    "Ingredients": "[Wheat Flour, Tomato]"
+  },
+  {
+    "Recipe": "Fried Eel",
+    "Ingredients": "[Eel, Oil]"
+  },
+  {
+    "Recipe": "Spicy Eel",
+    "Ingredients": "[Eel, Hot Pepper]"
+  },
+  {
+    "Recipe": "Sashimi",
+    "Ingredients": "[Fish]"
+  },
+  {
+    "Recipe": "Maki Roll",
+    "Ingredients": "[Fish, Seaweed, Rice]"
+  },
+  {
+    "Recipe": "Tortilla",
+    "Ingredients": "[Corn]"
+  },
+  {
+    "Recipe": "Red Plate",
+    "Ingredients": "[Red Cabbage, Radish]"
+  },
+  {
+    "Recipe": "Eggplant Parmesan",
+    "Ingredients": "[Eggplant, Tomato]"
+  },
+  {
+    "Recipe": "Rice Pudding",
+    "Ingredients": "[Milk, Sugar, Rice]"
+  },
+  {
+    "Recipe": "Ice Cream",
+    "Ingredients": "[Milk, Sugar]"
+  },
+  {
+    "Recipe": "Blueberry Tart",
+    "Ingredients": "[Blueberry, Wheat Flour, Sugar, Egg]"
+  },
+  {
+    "Recipe": "Autumn's Bounty",
+    "Ingredients": "[Yam, Pumpkin]"
+  },
+  {
+    "Recipe": "Pumpkin Soup",
+    "Ingredients": "[Pumpkin, Milk]"
+  },
+  {
+    "Recipe": "Super Meal",
+    "Ingredients": "[Bok Choy, Cranberries, Artichoke]"
+  },
+  {
+    "Recipe": "Cranberry Sauce",
+    "Ingredients": "[Cranberries, Sugar]"
+  },
+  {
+    "Recipe": "Stuffing",
+    "Ingredients": "[Bread, Cranberries, Hazelnut]"
+  },
+  {
+    "Recipe": "Farmer's Lunch",
+    "Ingredients": "[Omelet, Parsnip]"
+  },
+  {
+    "Recipe": "Survival Burger",
+    "Ingredients": "[Bread, Cave Carrot, Eggplant]"
+  },
+  {
+    "Recipe": "Dish O' The Sea",
+    "Ingredients": "[Sardine, Sardine, Potato, Oil]"
+  },
+  {
+    "Recipe": "Miner's Treat",
+    "Ingredients": "[Cave Carrot, Cave Carrot, Sugar, Milk]"
+  },
+  {
+    "Recipe": "Roots Platter",
+    "Ingredients": "[Cave Carrot, Winter Root]"
+  },
+  {
+    "Recipe": "Triple Shot Espresso",
+    "Ingredients": "[Coffee, Coffee, Coffee]"
+  },
+  {
+    "Recipe": "Seafoam Pudding",
+    "Ingredients": "[Flounder, Midnight Carp, Squid Ink]"
+  },
+  {
+    "Recipe": "Algae Soup",
+    "Ingredients": "[Green Algae, Green Algae, Green Algae, Green Algae]"
+  },
+  {
+    "Recipe": "Pale Broth",
+    "Ingredients": "[White Algae, White Algae]"
+  },
+  {
+    "Recipe": "Plum Pudding",
+    "Ingredients": "[Wild Plum, Wild Plum, Wheat Flour, Sugar]"
+  },
+  {
+    "Recipe": "Artichoke Dip",
+    "Ingredients": "[Artichoke, Milk]"
+  },
+  {
+    "Recipe": "Stir Fry",
+    "Ingredients": "[Cave Carrot, Common Mushroom, Kale, Oil]"
+  },
+  {
+    "Recipe": "Roasted Hazelnuts",
+    "Ingredients": "[Hazelnut, Hazelnut, Hazelnut]"
+  },
+  {
+    "Recipe": "Pumpkin Pie",
+    "Ingredients": "[Pumpkin, Wheat Flour, Milk, Sugar]"
+  },
+  {
+    "Recipe": "Radish Salad",
+    "Ingredients": "[Oil, Vinegar, Radish]"
+  },
+  {
+    "Recipe": "Fruit Salad",
+    "Ingredients": "[Blueberry, Melon, Apricot]"
+  },
+  {
+    "Recipe": "Blackberry Cobbler",
+    "Ingredients": "[Blackberry, Blackberry, Sugar, Wheat Flour]"
+  },
+  {
+    "Recipe": "Cranberry Candy",
+    "Ingredients": "[Cranberry, Apple, Sugar]"
+  },
+  {
+    "Recipe": "Bruschetta",
+    "Ingredients": "[Bread, Oil, Tomato]"
+  },
+  {
+    "Recipe": "Coleslaw",
+    "Ingredients": "[Red Cabbage, Vinegar, Mayo]"
+  },
+  {
+    "Recipe": "Fiddlehead Risotto",
+    "Ingredients": "[Oil, Fiddlehead Fern, Garlic]"
+  },
+  {
+    "Recipe": "Poppyseed Muffin",
+    "Ingredients": "[Poppy, Wheat Flour, Sugar]"
+  },
+  {
+    "Recipe": "Chowder",
+    "Ingredients": "[Clam, Milk]"
+  },
+  {
+    "Recipe": "Fish Stew",
+    "Ingredients": "[Crayfish, Mussel, Periwinkle, Tomato]"
+  },
+  {
+    "Recipe": "Escargot",
+    "Ingredients": "[Snail, Garlic]"
+  },
+  {
+    "Recipe": "Lobster Bisque",
+    "Ingredients": "[Lobster, Milk]"
+  },
+  {
+    "Recipe": "Maple Bar",
+    "Ingredients": "[Maple Syrup, Sugar, Wheat Flour]"
+  },
+  {
+    "Recipe": "Crab Cakes",
+    "Ingredients": "[Crab, Wheat Flour, Egg, Oil]"
+  },
+  {
+    "Recipe": "Shrimp Cocktail",
+    "Ingredients": "[Tomato, Shrimp, Wild Horseradish]"
+  },
+  {
+    "Recipe": "Ginger Ale",
+    "Ingredients": "[Ginger, Ginger, Ginger, Sugar]"
+  },
+  {
+    "Recipe": "Banana Pudding",
+    "Ingredients": "[Banana, Milk, Sugar]"
+  },
+  {
+    "Recipe": "Mango Sticky Rice",
+    "Ingredients": "[Mango, Coconut, Rice]"
+  },
+  {
+    "Recipe": "Poi",
+    "Ingredients": "[Taro Root, Taro Root, Taro Root, Taro Root]"
+  },
+  {
+    "Recipe": "Tropical Curry",
+    "Ingredients": "[Coconut, Pineapple, Hot Pepper]"
+  },
+  {
+    "Recipe": "Squid Ink Ravioli",
+    "Ingredients": "[Squid Ink, Wheat Flour, Tomato]"
+  },
+  {
+    "Recipe": "Moss Soup",
+    "Ingredients": "[Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, Moss, ]"
+  }
+]
+
+// Function to count the total number of each ingredient
+function countIngredients(data) {
+  const ingredientsCount = {};
+  data.forEach(recipe => {
+    const ingredientsArray = recipe.Ingredients.slice(1, -1).split(','); // Parse the ingredients string into an array
+    ingredientsArray.forEach(ingredient => {
+      ingredient = ingredient.trim(); // Remove any whitespace from the ingredient
+      if (ingredientsCount[ingredient]) {
+        ingredientsCount[ingredient]++;
+      } else {
+        ingredientsCount[ingredient] = 1;
+      }
+    });
+  });
+  return ingredientsCount;
+}
+
+// Function to update the ingredients list
+function updateIngredientsList(ingredientsCount) {
+  const ingredientsList = document.getElementById('ingredients');
+  ingredientsList.innerHTML = '';
+  Object.keys(ingredientsCount).forEach(ingredient => {
+    const li = document.createElement('li');
+    li.textContent = `${ingredient}: ${ingredientsCount[ingredient]}`;
+    ingredientsList.appendChild(li);
+  });
+}
+
+// Function to handle checking/unchecking of recipes
+function handleRecipeCheck(event) {
+  const checked = event.target.checked;
+  const recipeName = event.target.dataset.recipe;
+  const recipe = data.find(recipe => recipe.Recipe === recipeName); // Note the capital 'R' in Recipe
+  if (checked) {
+    // Subtract ingredients from total count
+    Object.keys(ingredientsCount).forEach(ingredient => {
+      const ingredientsArray = recipe.Ingredients.slice(1, -1).split(',');
+      if (ingredientsArray.includes(ingredient)) {
+        ingredientsCount[ingredient]--;
+      }
+    });
+  } else {
+    // Add ingredients back to total count
+    Object.keys(ingredientsCount).forEach(ingredient => {
+      const ingredientsArray = recipe.Ingredients.slice(1, -1).split(',');
+      if (ingredientsArray.includes(ingredient)) {
+        ingredientsCount[ingredient]++;
+      }
+    });
+  }
+  updateIngredientsList(ingredientsCount);
+}
+
+// Initialize the ingredients count
+const ingredientsCount = countIngredients(data);
+
+// Populate the recipes list
+const recipesList = document.getElementById('recipes');
+data.forEach(recipe => {
+  const li = document.createElement('li');
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.dataset.recipe = recipe.Recipe; // Note the capital 'R' in Recipe
+  checkbox.addEventListener('change', handleRecipeCheck);
+  li.appendChild(checkbox);
+  li.appendChild(document.createTextNode(recipe.Recipe)); // Note the capital 'R' in Recipe
+  recipesList.appendChild(li);
+});
+
+// Initialize the ingredients list
+updateIngredientsList(ingredientsCount);
+    </script>
 </body>
 </html>
