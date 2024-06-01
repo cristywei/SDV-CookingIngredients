@@ -373,8 +373,8 @@ const data = [
   },
   {
     "Recipe": "Cranberry Candy",
-    "Ingredients": "[Cranberry, Apple, Sugar]",
-    "Raw Ingredients": "[Cranberry, Apple, Sugar]",
+    "Ingredients": "[Cranberries, Apple, Sugar]",
+    "Raw Ingredients": "[Cranberries, Apple, Sugar]",
     "Recipe Source": "Queen of Sauce, Winter 28, Year 1"
   },
   {
