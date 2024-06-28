@@ -4,8 +4,14 @@ body {
 
 ul {
     list-style-type: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+}
+
+.header {
+    font-size: 20px;
+    text-align: center;
+    width: 100%
 }
 
 .container {
@@ -14,18 +20,18 @@ ul {
 }
 
 .recipe-list, .ingredient-list, .raw-ingredient-list {
-    padding: 20px;
     border: 1px solid #000;
+    padding: 20px;
     width: 30%;
 }
 
 .tooltip {
-    visibility: hidden;
     background-color: black;
+    border-radius: 5px;
     color: white;
     padding: 5px;
-    border-radius: 5px;
     position: absolute;
+    visibility: hidden;
 }
 
 li:hover .tooltip {
