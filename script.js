@@ -487,112 +487,112 @@ const data = [
   }
 ]
 
- // Function to count the total number of each ingredient
- function countIngredients(data) {
-            const ingredientsCount = {};
-            const rawIngredientsCount = {};
-            data.forEach(recipe => {
-                const ingredientsArray = recipe.Ingredients.slice(1, -1).split(','); // Parse the ingredients string into an array
-                const rawIngredientsArray = recipe["Raw Ingredients"].slice(1, -1).split(','); // Parse the raw ingredients string into an array
-                ingredientsArray.forEach(ingredient => {
-                    ingredient = ingredient.trim(); // Remove any whitespace from the ingredient
-                    if (ingredientsCount[ingredient]) {
-                        ingredientsCount[ingredient]++;
-                    } else {
-                        ingredientsCount[ingredient] = 1;
-                    }
-                });
-                rawIngredientsArray.forEach(ingredient => {
-                    ingredient = ingredient.trim(); // Remove any whitespace from the ingredient
-                    if (rawIngredientsCount[ingredient]) {
-                        rawIngredientsCount[ingredient]++;
-                    } else {
-                        rawIngredientsCount[ingredient] = 1;
-                    }
-                });
-            });
-            return { ingredientsCount, rawIngredientsCount };
-        }
+ // counting the total number of each ingredient
+function countIngredients(data) {
+	const ingredientsCount = {};
+	const rawIngredientsCount = {};
+	data.forEach(recipe => {
+		const ingredientsArray = recipe.Ingredients.slice(1, -1).split(','); // Parse the ingredients string into an array
+		const rawIngredientsArray = recipe["Raw Ingredients"].slice(1, -1).split(','); // Parse the raw ingredients string into an array
+		ingredientsArray.forEach(ingredient => {
+			ingredient = ingredient.trim(); // Remove any whitespace from the ingredient
+			if (ingredientsCount[ingredient]) {
+				ingredientsCount[ingredient]++;
+			} else {
+				ingredientsCount[ingredient] = 1;
+			}
+		});
+		rawIngredientsArray.forEach(ingredient => {
+			ingredient = ingredient.trim(); // Remove any whitespace from the ingredient
+			if (rawIngredientsCount[ingredient]) {
+				rawIngredientsCount[ingredient]++;
+			} else {
+				rawIngredientsCount[ingredient] = 1;
+			}
+		});
+	});
+	return { ingredientsCount, rawIngredientsCount };
+}
 
-        // Function to update the ingredients list
-        function updateIngredientsList(ingredientsCount, listId) {
-            const ingredientsList = document.getElementById(listId);
-            ingredientsList.innerHTML = '';
-            Object.keys(ingredientsCount).forEach(ingredient => {
-                if (ingredientsCount[ingredient] > 0) {
-                    const li = document.createElement('li');
-                    li.textContent = `${ingredient}: ${ingredientsCount[ingredient]}`;
-                    ingredientsList.appendChild(li);
-                }
-            });
-        }
+// update the ingredients list
+function updateIngredientsList(ingredientsCount, listId) {
+	const ingredientsList = document.getElementById(listId);
+	ingredientsList.innerHTML = '';
+	Object.keys(ingredientsCount).forEach(ingredient => {
+		if (ingredientsCount[ingredient] > 0) {
+			const li = document.createElement('li');
+			li.textContent = `${ingredient}: ${ingredientsCount[ingredient]}`;
+			ingredientsList.appendChild(li);
+		}
+	});
+}
 
-        // Function to handle checking/unchecking of recipes
-        function handleRecipeCheck(event) {
-            const checked = event.target.checked;
-            const recipeName = event.target.dataset.recipe;
-            const recipe = data.find(recipe => recipe.Recipe === recipeName);
-            if (checked) {
-                // Subtract ingredients from total count
-                const ingredientsArray = recipe.Ingredients.slice(1, -1).split(',');
-                const rawIngredientsArray = recipe["Raw Ingredients"].slice(1, -1).split(',');
-                ingredientsArray.forEach(ingredient => {
-                    ingredient = ingredient.trim();
-                    if (ingredientsCount[ingredient]) {
-                        ingredientsCount[ingredient]--;
-                    }
-                });
-                rawIngredientsArray.forEach(ingredient => {
-                    ingredient = ingredient.trim();
-                    if (rawIngredientsCount[ingredient]) {
-                        rawIngredientsCount[ingredient]--;
-                    }
-                });
-            } else {
-                // Add ingredients back to total count
-                const ingredientsArray = recipe.Ingredients.slice(1, -1).split(',');
-                const rawIngredientsArray = recipe["Raw Ingredients"].slice(1, -1).split(',');
-                ingredientsArray.forEach(ingredient => {
-                    ingredient = ingredient.trim();
-                    if (ingredientsCount[ingredient] !== undefined) {
-                        ingredientsCount[ingredient]++;
-                    }
-                });
-                rawIngredientsArray.forEach(ingredient => {
-                    ingredient = ingredient.trim();
-                    if (rawIngredientsCount[ingredient] !== undefined) {
-                        rawIngredientsCount[ingredient]++;
-                    }
-                });
-            }
-            updateIngredientsList(ingredientsCount, 'ingredients');
-            updateIngredientsList(rawIngredientsCount, 'raw-ingredients');
-        }
+// handle checking/unchecking of recipes
+function handleRecipeCheck(event) {
+	const checked = event.target.checked;
+	const recipeName = event.target.dataset.recipe;
+	const recipe = data.find(recipe => recipe.Recipe === recipeName);
+	if (checked) {
+		// Subtract ingredients from total count
+		const ingredientsArray = recipe.Ingredients.slice(1, -1).split(',');
+		const rawIngredientsArray = recipe["Raw Ingredients"].slice(1, -1).split(',');
+		ingredientsArray.forEach(ingredient => {
+			ingredient = ingredient.trim();
+			if (ingredientsCount[ingredient]) {
+				ingredientsCount[ingredient]--;
+			}
+		});
+		rawIngredientsArray.forEach(ingredient => {
+			ingredient = ingredient.trim();
+			if (rawIngredientsCount[ingredient]) {
+				rawIngredientsCount[ingredient]--;
+			}
+		});
+	} else {
+		// Add ingredients back to total count
+		const ingredientsArray = recipe.Ingredients.slice(1, -1).split(',');
+		const rawIngredientsArray = recipe["Raw Ingredients"].slice(1, -1).split(',');
+		ingredientsArray.forEach(ingredient => {
+			ingredient = ingredient.trim();
+			if (ingredientsCount[ingredient] !== undefined) {
+				ingredientsCount[ingredient]++;
+			}
+		});
+		rawIngredientsArray.forEach(ingredient => {
+			ingredient = ingredient.trim();
+			if (rawIngredientsCount[ingredient] !== undefined) {
+				rawIngredientsCount[ingredient]++;
+			}
+		});
+	}
+	updateIngredientsList(ingredientsCount, 'ingredients');
+	updateIngredientsList(rawIngredientsCount, 'raw-ingredients');
+}
 
-        // Initialize the ingredients count
-        const { ingredientsCount, rawIngredientsCount } = countIngredients(data);
+// initialize the ingredients count
+const { ingredientsCount, rawIngredientsCount } = countIngredients(data);
 
-        // Populate the recipes list
-        const recipesList = document.getElementById('recipes');
-        data.forEach(recipe => {
-            const li = document.createElement('li');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.dataset.recipe = recipe.Recipe;
-            checkbox.addEventListener('change', handleRecipeCheck);
-            li.appendChild(checkbox);
+// populate recipes list
+const recipesList = document.getElementById('recipes');
+data.forEach(recipe => {
+	const li = document.createElement('li');
+	const checkbox = document.createElement('input');
+	checkbox.type = 'checkbox';
+	checkbox.dataset.recipe = recipe.Recipe;
+	checkbox.addEventListener('change', handleRecipeCheck);
+	li.appendChild(checkbox);
 
-            const recipeText = document.createTextNode(recipe.Recipe);
-            const sourceSpan = document.createElement('span');
-            sourceSpan.textContent = recipe["Recipe Source"] || ''; // Use an empty string if Source is undefined
-            sourceSpan.className = 'tooltip'; // Add a class for styling
+	const recipeText = document.createTextNode(recipe.Recipe);
+	const sourceSpan = document.createElement('span');
+	sourceSpan.textContent = recipe["Recipe Source"] || ''; // Use an empty string if Source is undefined
+	sourceSpan.className = 'tooltip'; // Add a class for styling
 
-            li.appendChild(recipeText);
-            li.appendChild(sourceSpan);
+	li.appendChild(recipeText);
+	li.appendChild(sourceSpan);
 
-            recipesList.appendChild(li);
-        });
+	recipesList.appendChild(li);
+});
 
-        // Initialize the ingredients list
-        updateIngredientsList(ingredientsCount, 'ingredients');
-        updateIngredientsList(rawIngredientsCount, 'raw-ingredients');
+// initialize the ingredients list
+updateIngredientsList(ingredientsCount, 'ingredients');
+updateIngredientsList(rawIngredientsCount, 'raw-ingredients');
