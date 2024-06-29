@@ -584,8 +584,8 @@ data.forEach(recipe => {
 
 	const recipeText = document.createTextNode(recipe.Recipe);
 	const sourceSpan = document.createElement('span');
-	sourceSpan.textContent = recipe["Recipe Source"] || ''; // Use an empty string if Source is undefined
-	sourceSpan.className = 'tooltip'; // Add a class for styling
+	sourceSpan.textContent = recipe["Recipe Source"] || ''; // use an empty string if source is undefined
+	sourceSpan.className = 'tooltip'; // add a class for styling
 
 	li.appendChild(recipeText);
 	li.appendChild(sourceSpan);
