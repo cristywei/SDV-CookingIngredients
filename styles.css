@@ -1,7 +1,9 @@
 body {
     background: linear-gradient(rgba(17,40,100), rgba(47,117,205), rgba(118,203,235));
     background-color: rgba(17, 40, 100);
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
+    height: 100vh;
 }
 
 ul {
@@ -22,8 +24,8 @@ ul {
 }
 
 .recipe-list, .ingredient-list, .raw-ingredient-list {
-    background-color: rgba(0, 202, 255, 0.5);
-    border: 1px solid #000;
+    background-color: rgba(181, 240, 255, 0.895);
+    border: 1px solid #ffffff;
     padding: 20px;
     width: 30%;
 }
@@ -31,7 +33,7 @@ ul {
 .tooltip {
     background-color: black;
     border-radius: 5px;
-    color: white;
+    color: #fff;
     padding: 5px;
     position: absolute;
     visibility: hidden;
@@ -39,4 +41,4 @@ ul {
 
 li:hover .tooltip {
     visibility: visible;
-}
+}g
