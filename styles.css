@@ -1,5 +1,6 @@
 body {
-    background-color: #0066ff;
+    background: linear-gradient(rgba(17,40,100), rgba(47,117,205), rgba(118,203,235));
+    background-color: rgba(17, 40, 100);
     font-family: Arial, sans-serif;
 }
 
@@ -21,9 +22,8 @@ ul {
 }
 
 .recipe-list, .ingredient-list, .raw-ingredient-list {
-    background-color: #66ccff;
+    background-color: rgba(0, 202, 255, 0.5);
     border: 1px solid #000;
-    opacity: 50%;
     padding: 20px;
     width: 30%;
 }
