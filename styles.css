@@ -34,6 +34,7 @@ h2 {
 .recipe-list, .ingredient-list, .raw-ingredient-list {
     background-color: rgba(181, 240, 255, 0.75);
     border: 1px solid #ffffff;
+    font-size: 12px;
     margin: 10px;
     padding: 10px;
     width: 25%;
@@ -41,8 +42,9 @@ h2 {
 
 .tooltip {
     background-color: rgba(17, 40, 100);
-    border-radius: 5px;
+    border-radius: 2px;
     color: #fff;
+    font-size: 10px;
     padding: 5px;
     position: absolute;
     visibility: hidden;
