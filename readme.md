@@ -2,7 +2,8 @@
 
 - as of 06/28: functioning checklist, minimal styling
 - short-term goals:
-    - updated styles in line with Stardew Valley
+    - updated styles similar to Stardew Valley Wiki
+        - header styles
     - header with description
 - long-term goals:
     - better mobile UI
