@@ -9,17 +9,17 @@ body {
 ul {
     list-style-type: none;
     margin: 0;
-    padding: 10px;
 }
 
 #content {
-    background-color: rgba(181, 240, 255, 0.75);
+    background-color: rgba(181, 240, 255, 0.5);
     border: 1px solid #679eba;
+    margin: 20px;
 }
 
 .header {
     font-size: 20px;
-    margin: 10px;
+    margin: 0px;
     padding: 10px;
     text-align: center;
     width: 100%;
@@ -31,7 +31,7 @@ ul {
 }
 
 .recipe-list, .ingredient-list, .raw-ingredient-list {
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid #679eba;
     font-size: 15px;
     margin: 10px;
