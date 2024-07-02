@@ -35,13 +35,13 @@ ul {
     border: 1px solid #679eba;
     font-size: 15px;
     margin: 10px;
-    padding: 0px;
+    padding: 5px;
     width: 25%;
 }
 
 h2 {
     background-color: rgba(71, 156, 46, 1);
-    border: 1px solid #00520e;
+    border: 1px solid #009419;
     color: white;
     font-size: 18px;
     font-style: bold;
