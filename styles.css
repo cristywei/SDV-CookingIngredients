@@ -2,7 +2,7 @@ body {
     background: linear-gradient(rgba(17,40,100), rgba(47,117,205), rgba(118,203,235));
     background-color: rgba(17, 40, 100);
     background-attachment: fixed;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     height: 100vh;
 }
 
@@ -13,8 +13,14 @@ ul {
 }
 
 h2 {
-    font-size: 15px;
-    font-style: normal;
+    background-color: rgba(71, 156, 46, 1);
+    color: white;
+    font-size: 18px;
+    font-style: bold;
+    margin: 0;
+    text-align: center;
+    text-shadow: 0px 2px #7e7e7e;
+    width: 100%
 }
 
 .header {
@@ -34,7 +40,7 @@ h2 {
 .recipe-list, .ingredient-list, .raw-ingredient-list {
     background-color: rgba(181, 240, 255, 0.75);
     border: 1px solid #ffffff;
-    font-size: 12px;
+    font-size: 15px;
     margin: 10px;
     padding: 10px;
     width: 25%;
