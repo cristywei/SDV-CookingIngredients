@@ -42,11 +42,12 @@ ul {
 h2 {
     background-color: rgba(71, 156, 46, 1);
     border: 1px solid #009419;
+    box-sizing: border-box;
     color: white;
     font-size: 18px;
     font-style: bold;
     margin: 0;
-    padding: 0px;
+    padding: 3px;
     text-align: center;
     text-shadow: 0px 2px #7e7e7e;
     width: 100%
