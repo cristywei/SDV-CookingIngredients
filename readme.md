@@ -1,10 +1,11 @@
 [cristywei.github.io/SDV-CookingIngredients](https://cristywei.github.io/SDV-CookingIngredients/)<br>
 
-- as of 06/28: functioning checklist, minimal styling
+- as of 07/04: functioning checklist, minimal styling
 - short-term goals:
     - updated styles similar to Stardew Valley Wiki
-        - header styles
+        - colors, borders, tables, fonts sizing
     - header with description
+    - new background
 - long-term goals:
     - better mobile UI
     - crafting checklist tab
