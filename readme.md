@@ -1,6 +1,6 @@
 [cristywei.github.io/SDV-CookingIngredients](https://cristywei.github.io/SDV-CookingIngredients/)<br>
 
-- as of 07/04: functioning checklist, minimal styling
+- as of 07/04: functioning checklist, some styling
 - short-term goals:
     - updated styles similar to Stardew Valley Wiki
         - colors, borders, tables, fonts sizing
